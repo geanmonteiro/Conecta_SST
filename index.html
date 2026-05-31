@@ -221,8 +221,18 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">7. Comentário ou sugestão <span class="q-hint">(opcional)</span></label>
-        <textarea class="q-textarea" id="qP7" placeholder="Compartilhe sua experiência..."></textarea>
+        <label class="q-label">7. Quanto pagaria mensalmente por uma plataforma que garante acesso a clientes?</label>
+        <div class="opt-list">
+          <label class="opt"><input type="radio" name="qP7" value="Nada — deveria ser gratuito"><span class="opt-text">Nada — deveria ser gratuito para o profissional</span></label>
+          <label class="opt"><input type="radio" name="qP7" value="Até R$ 50/mês"><span class="opt-text">Até R$ 50/mês</span></label>
+          <label class="opt"><input type="radio" name="qP7" value="Até R$ 100/mês"><span class="opt-text">Até R$ 100/mês</span></label>
+          <label class="opt"><input type="radio" name="qP7" value="Até R$ 200/mês"><span class="opt-text">Até R$ 200/mês</span></label>
+          <label class="opt"><input type="radio" name="qP7" value="Prefiro pagar comissão por negócio fechado"><span class="opt-text">Prefiro pagar comissão por negócio fechado (ex: 5–10%)</span></label>
+        </div>
+      </div>
+      <div class="q-block">
+        <label class="q-label">8. Comentário ou sugestão <span class="q-hint">(opcional)</span></label>
+        <textarea class="q-textarea" id="qP8" placeholder="Compartilhe sua experiência..."></textarea>
       </div>
     </div>
     <div class="card-nav">
@@ -249,8 +259,21 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">2. Como contrata SST hoje? <span class="q-hint">(múltipla escolha)</span></label>
-        <div class="chip-grid" id="qE2">
+        <label class="q-label">2. Qual é o setor de atuação da sua empresa?</label>
+        <div class="opt-list">
+          <label class="opt"><input type="radio" name="qE2" value="Indústria / manufatura"><span class="opt-text">Indústria / manufatura</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Construção civil"><span class="opt-text">Construção civil</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Comércio"><span class="opt-text">Comércio</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Serviços"><span class="opt-text">Serviços</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Agronegócio / rural"><span class="opt-text">Agronegócio / rural</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Saúde"><span class="opt-text">Saúde</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Logística / transporte"><span class="opt-text">Logística / transporte</span></label>
+          <label class="opt"><input type="radio" name="qE2" value="Outro"><span class="opt-text">Outro</span></label>
+        </div>
+      </div>
+      <div class="q-block">
+        <label class="q-label">3. Como contrata SST hoje? <span class="q-hint">(múltipla escolha)</span></label>
+        <div class="chip-grid" id="qE3b">
           <div class="chip" onclick="toggleChip(this)">Indicação de conhecidos</div>
           <div class="chip" onclick="toggleChip(this)">Google / internet</div>
           <div class="chip" onclick="toggleChip(this)">Empresa terceirizada fixa</div>
@@ -260,7 +283,7 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">3. Quais serviços sua empresa já precisou? <span class="q-hint">(múltipla escolha)</span></label>
+        <label class="q-label">4. Quais serviços sua empresa já precisou? <span class="q-hint">(múltipla escolha)</span></label>
         <div class="chip-grid" id="qE3">
           <div class="chip" onclick="toggleChip(this)">PGR / PGRTR</div>
           <div class="chip" onclick="toggleChip(this)">PCMSO</div>
@@ -290,7 +313,7 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
     <div class="card-body">
       <div class="screen-title">Dores e expectativas</div>
       <div class="q-block">
-        <label class="q-label">4. Maiores dificuldades ao contratar SST? <span class="q-hint">(múltipla escolha)</span></label>
+        <label class="q-label">5. Maiores dificuldades ao contratar SST? <span class="q-hint">(múltipla escolha)</span></label>
         <div class="opt-list">
           <label class="opt"><input type="checkbox" name="qE4" value="Não saber quem é confiável e qualificado"><span class="opt-text">Não saber quem é confiável e qualificado</span></label>
           <label class="opt"><input type="checkbox" name="qE4" value="Preços variados sem referência de mercado"><span class="opt-text">Preços variados sem referência de mercado</span></label>
@@ -301,7 +324,7 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">5. Usaria uma plataforma para buscar profissionais de SST e receber orçamentos?</label>
+        <label class="q-label">6. Usaria uma plataforma para buscar profissionais de SST e receber orçamentos?</label>
         <div class="opt-list">
           <label class="opt"><input type="radio" name="qE5" value="Sim, com certeza"><span class="opt-text">Sim, com certeza — seria muito mais prático</span></label>
           <label class="opt"><input type="radio" name="qE5" value="Sim, se houvesse avaliações"><span class="opt-text">Sim, se houvesse avaliações e garantias</span></label>
@@ -310,7 +333,7 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">6. O que mais importaria na plataforma? <span class="q-hint">(múltipla escolha)</span></label>
+        <label class="q-label">7. O que mais importaria na plataforma? <span class="q-hint">(múltipla escolha)</span></label>
         <div class="chip-grid" id="qE6">
           <div class="chip" onclick="toggleChip(this)">Avaliações dos profissionais</div>
           <div class="chip" onclick="toggleChip(this)">Preço transparente</div>
@@ -323,7 +346,7 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">7. Comentário ou experiência <span class="q-hint">(opcional)</span></label>
+        <label class="q-label">8. Comentário ou experiência <span class="q-hint">(opcional)</span></label>
         <textarea class="q-textarea" id="qE7" placeholder="Compartilhe sua experiência..."></textarea>
       </div>
     </div>
@@ -352,13 +375,23 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">2. Você está atuando em SST atualmente?</label>
+        <label class="q-label">2. Há quanto tempo você concluiu sua formação principal?</label>
         <div class="opt-list">
-          <label class="opt"><input type="radio" name="qS2" value="Sim, empregado CLT"><span class="opt-text">Sim — empregado com carteira assinada</span></label>
-          <label class="opt"><input type="radio" name="qS2" value="Sim, autônomo"><span class="opt-text">Sim — de forma autônoma / freelancer</span></label>
-          <label class="opt"><input type="radio" name="qS2" value="Não, buscando emprego SST"><span class="opt-text">Não — estou buscando emprego na área</span></label>
-          <label class="opt"><input type="radio" name="qS2" value="Não, outra área"><span class="opt-text">Não — trabalho em outra área</span></label>
-          <label class="opt"><input type="radio" name="qS2" value="Não, sem trabalhar"><span class="opt-text">Não — estou sem trabalhar no momento</span></label>
+          <label class="opt"><input type="radio" name="qS2" value="Ainda estou cursando"><span class="opt-text">Ainda estou cursando</span></label>
+          <label class="opt"><input type="radio" name="qS2" value="Menos de 1 ano"><span class="opt-text">Menos de 1 ano</span></label>
+          <label class="opt"><input type="radio" name="qS2" value="1 a 2 anos"><span class="opt-text">1 a 2 anos</span></label>
+          <label class="opt"><input type="radio" name="qS2" value="3 a 5 anos"><span class="opt-text">3 a 5 anos</span></label>
+          <label class="opt"><input type="radio" name="qS2" value="Mais de 5 anos"><span class="opt-text">Mais de 5 anos</span></label>
+        </div>
+      </div>
+      <div class="q-block">
+        <label class="q-label">3. Você está atuando em SST atualmente?</label>
+        <div class="opt-list">
+          <label class="opt"><input type="radio" name="qS3" value="Sim, empregado CLT"><span class="opt-text">Sim — empregado com carteira assinada</span></label>
+          <label class="opt"><input type="radio" name="qS3" value="Sim, autônomo"><span class="opt-text">Sim — de forma autônoma / freelancer</span></label>
+          <label class="opt"><input type="radio" name="qS3" value="Não, buscando emprego SST"><span class="opt-text">Não — estou buscando emprego na área</span></label>
+          <label class="opt"><input type="radio" name="qS3" value="Não, outra área"><span class="opt-text">Não — trabalho em outra área</span></label>
+          <label class="opt"><input type="radio" name="qS3" value="Não, sem trabalhar"><span class="opt-text">Não — estou sem trabalhar no momento</span></label>
         </div>
       </div>
     </div>
@@ -377,27 +410,27 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
     <div class="card-body">
       <div class="screen-title">Barreiras e oportunidades</div>
       <div class="q-block">
-        <label class="q-label">3. Suas maiores barreiras para entrar no mercado: <span class="q-hint">(múltipla escolha)</span></label>
+        <label class="q-label">4. Suas maiores barreiras para entrar no mercado: <span class="q-hint">(múltipla escolha)</span></label>
         <div class="opt-list">
-          <label class="opt"><input type="checkbox" name="qS3" value="Falta de portfólio e experiência comprovada"><span class="opt-text">Falta de portfólio e experiência comprovada</span></label>
-          <label class="opt"><input type="checkbox" name="qS3" value="Não saber como captar clientes autônomos"><span class="opt-text">Não saber como captar clientes como autônomo</span></label>
-          <label class="opt"><input type="checkbox" name="qS3" value="Insegurança técnica para elaborar documentos"><span class="opt-text">Insegurança técnica para elaborar documentos</span></label>
-          <label class="opt"><input type="checkbox" name="qS3" value="Mercado exige experiência que não tenho"><span class="opt-text">Mercado exige experiência que ainda não tenho</span></label>
-          <label class="opt"><input type="checkbox" name="qS3" value="Não saber precificar os serviços"><span class="opt-text">Não saber como precificar meus serviços</span></label>
-          <label class="opt"><input type="checkbox" name="qS3" value="Falta de rede de contatos na área"><span class="opt-text">Falta de rede de contatos na área</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Falta de portfólio e experiência comprovada"><span class="opt-text">Falta de portfólio e experiência comprovada</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Não saber como captar clientes autônomos"><span class="opt-text">Não saber como captar clientes como autônomo</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Insegurança técnica para elaborar documentos"><span class="opt-text">Insegurança técnica para elaborar documentos</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Mercado exige experiência que não tenho"><span class="opt-text">Mercado exige experiência que ainda não tenho</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Não saber precificar os serviços"><span class="opt-text">Não saber como precificar meus serviços</span></label>
+          <label class="opt"><input type="checkbox" name="qS4" value="Falta de rede de contatos na área"><span class="opt-text">Falta de rede de contatos na área</span></label>
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">4. Com uma plataforma que recebe pedidos de orçamento, você atuaria como autônomo?</label>
+        <label class="q-label">5. Com uma plataforma que recebe pedidos de orçamento, você atuaria como autônomo?</label>
         <div class="opt-list">
-          <label class="opt"><input type="radio" name="qS4" value="Sim, com certeza"><span class="opt-text">Sim, com certeza — era o que me faltava</span></label>
-          <label class="opt"><input type="radio" name="qS4" value="Sim, mas precisaria de apoio técnico"><span class="opt-text">Sim, mas precisaria de mentoria ou apoio técnico</span></label>
-          <label class="opt"><input type="radio" name="qS4" value="Talvez"><span class="opt-text">Talvez — ainda tenho insegurança</span></label>
-          <label class="opt"><input type="radio" name="qS4" value="Não, prefiro CLT"><span class="opt-text">Não — prefiro trabalho fixo com carteira assinada</span></label>
+          <label class="opt"><input type="radio" name="qS5" value="Sim, com certeza"><span class="opt-text">Sim, com certeza — era o que me faltava</span></label>
+          <label class="opt"><input type="radio" name="qS5" value="Sim, mas precisaria de apoio técnico"><span class="opt-text">Sim, mas precisaria de mentoria ou apoio técnico</span></label>
+          <label class="opt"><input type="radio" name="qS5" value="Talvez"><span class="opt-text">Talvez — ainda tenho insegurança</span></label>
+          <label class="opt"><input type="radio" name="qS5" value="Não, prefiro CLT"><span class="opt-text">Não — prefiro trabalho fixo com carteira assinada</span></label>
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">5. O que a plataforma precisaria oferecer? <span class="q-hint">(múltipla escolha)</span></label>
+        <label class="q-label">6. O que a plataforma precisaria oferecer? <span class="q-hint">(múltipla escolha)</span></label>
         <div class="chip-grid" id="qS5">
           <div class="chip" onclick="toggleChip(this)">Templates de documentos</div>
           <div class="chip" onclick="toggleChip(this)">Cursos e capacitação</div>
@@ -410,8 +443,18 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block">
-        <label class="q-label">6. Conte sua situação <span class="q-hint">(opcional)</span></label>
-        <textarea class="q-textarea" id="qS6" placeholder="Ex: Me formei há 2 anos mas nunca consegui o primeiro cliente..."></textarea>
+        <label class="q-label">7. Qual seria o maior atrativo de uma plataforma assim para você?</label>
+        <div class="opt-list">
+          <label class="opt"><input type="radio" name="qS7" value="Ter acesso a clientes sem precisar me divulgar"><span class="opt-text">Ter acesso a clientes sem precisar me divulgar</span></label>
+          <label class="opt"><input type="radio" name="qS7" value="Construir portfólio e reputação com avaliações reais"><span class="opt-text">Construir portfólio e reputação com avaliações reais</span></label>
+          <label class="opt"><input type="radio" name="qS7" value="Ter referência de preços para cobrar de forma justa"><span class="opt-text">Ter referência de preços para cobrar de forma justa</span></label>
+          <label class="opt"><input type="radio" name="qS7" value="Aprender com outros profissionais e materiais"><span class="opt-text">Aprender com outros profissionais e materiais</span></label>
+          <label class="opt"><input type="radio" name="qS7" value="Ter renda extra como freelancer no tempo livre"><span class="opt-text">Ter renda extra trabalhando como freelancer no meu tempo livre</span></label>
+        </div>
+      </div>
+      <div class="q-block">
+        <label class="q-label">8. Conte sua situação <span class="q-hint">(opcional)</span></label>
+        <textarea class="q-textarea" id="qS8" placeholder="Ex: Me formei há 2 anos mas nunca consegui o primeiro cliente..."></textarea>
       </div>
     </div>
     <div class="card-nav">
@@ -553,13 +596,15 @@ function coletarRespostas() {
       canais:         getChips('qP4'),
       dificuldades:   getChecks('qP5'),
       usaria:         getRadio('qP6'),
-      comentario:     getText('qP7')
+      valorPagar:     getRadio('qP7'),
+      comentario:     getText('qP8')
     };
   }
   if (profile === 'emp') {
     return {
       porte:         getRadio('qE1'),
-      comoContrata:  getChips('qE2'),
+      setor:         getRadio('qE2'),
+      comoContrata:  getChips('qE3b'),
       documentos:    getChips('qE3'),
       dificuldades:  getChecks('qE4'),
       usaria:        getRadio('qE5'),
@@ -569,12 +614,14 @@ function coletarRespostas() {
   }
   if (profile === 'est') {
     return {
-      formacao:   getRadio('qS1'),
-      situacao:   getRadio('qS2'),
-      barreiras:  getChecks('qS3'),
-      usaria:     getRadio('qS4'),
-      oferece:    getChips('qS5'),
-      comentario: getText('qS6')
+      formacao:      getRadio('qS1'),
+      tempoFormado:  getRadio('qS2'),
+      situacao:      getRadio('qS3'),
+      barreiras:     getChecks('qS4'),
+      usaria:        getRadio('qS5'),
+      oferece:       getChips('qS5'),
+      maiorAtrativo: getRadio('qS7'),
+      comentario:    getText('qS8')
     };
   }
   return {};
