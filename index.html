@@ -126,9 +126,13 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted2)}
         </div>
       </div>
       <div class="q-block" style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
-        <label class="q-label" for="qEmail">Seu e-mail <span class="q-hint">(opcional — para contato sobre a plataforma)</span></label>
+        <label class="q-label" for="qEmail">Seu e-mail <span style="color:#c0392b;margin-left:2px">*</span></label>
         <input type="email" id="qEmail" class="q-textarea" style="min-height:auto;padding:10px 14px;resize:none"
-               placeholder="seuemail@exemplo.com">
+               placeholder="seuemail@exemplo.com" autocomplete="email"
+               oninput="this.style.borderColor='';document.getElementById('emailErro').style.display='none'">
+        <div id="emailErro" style="display:none;margin-top:6px;font-size:12px;color:#c0392b;font-weight:500">
+          ⚠ Por favor, informe um e-mail válido para continuar.
+        </div>
       </div>
     </div>
     <div class="card-nav">
@@ -497,6 +501,7 @@ const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwKQdeTXRMsXNetRxDy_u
 
 // ── ESTADO ───────────────────────────────────────────────────
 var profile = null;
+var emailSalvo = '';
 var hist = [];
 var curScreen = 's0';
 
@@ -543,6 +548,27 @@ function showScreen(id, dir) {
 function goNext() {
   if (curScreen === 's0') {
     if (!profile) return;
+
+    // Valida e-mail obrigatório
+    var emailEl = document.getElementById('qEmail');
+    var emailVal = emailEl ? emailEl.value.trim() : '';
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var erroEl = document.getElementById('emailErro');
+
+    if (!emailVal || !emailRegex.test(emailVal)) {
+      // Mostra erro e destaca o campo
+      if (erroEl) erroEl.style.display = 'block';
+      if (emailEl) {
+        emailEl.style.borderColor = '#c0392b';
+        emailEl.focus();
+      }
+      return; // bloqueia o avanço
+    }
+
+    // E-mail válido — limpa o erro e salva
+    if (erroEl) erroEl.style.display = 'none';
+    if (emailEl) emailEl.style.borderColor = '';
+    emailSalvo = emailVal;
     hist = ['s0'];
     showScreen(FLOWS[profile][0]);
   } else {
@@ -593,8 +619,8 @@ function getText(id) {
 }
 
 function getEmail() {
-  var el = document.getElementById('qEmail');
-  return el ? el.value.trim() : '';
+  // Usa a variável salva ao sair da tela inicial (mais confiável que ler campo oculto)
+  return emailSalvo;
 }
 
 function coletarRespostas() {
