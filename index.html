@@ -767,43 +767,9 @@ footer a{color:var(--teal);text-decoration:none}
 //  CONFIGURAÇÃO: Cole aqui os IDs dos seus Google Forms
 //  Consulte o guia no final do arquivo para encontrar os IDs
 // ═══════════════════════════════════════════════════════════════
-const FORMS = {
-  prof: {
-    action: 'https://docs.google.com/forms/d/e/1FAIpQLSc_HqsTshAxfRYAE4seU82g-dO11EvXy_r4yMOdN5MPbESA_Q/formResponse',
-    fields: {
-      tempoAtuacao:   'entry.879886274',
-      regimeTrabalho: 'entry.2071890787',
-      servicos:       'entry.650559774',
-      canais:         'entry.1000230989',
-      dificuldades:   'entry.1596971501',
-      usaria:         'entry.1557327407',
-      comentario:     'entry.248004105'
-    }
-  },
-  emp: {
-    action: 'https://docs.google.com/forms/d/e/1FAIpQLSewuxHtzLdMGbZV94E5ArgfS1-och-mDM1ghPBS9qZhp2ihaQ/formResponse',
-    fields: {
-      porte:          'entry.351620782',
-      comoContrata:   'entry.1401371171',
-      documentos:     'entry.554939249',
-      dificuldades:   'entry.1017624750',
-      usaria:         'entry.1635466317',
-      importancia:    'entry.506000951',
-      comentario:     'entry.1149890110'
-    }
-  },
-  est: {
-    action: 'https://docs.google.com/forms/d/e/1FAIpQLSflG2J2K_ZRWXoRBbIdVS_TZk52o2YiEF_VNfENFO-lo1CBPQ/formResponse',
-    fields: {
-      formacao:       'entry.419513996',
-      situacao:       'entry.630455162',
-      barreiras:      'entry.977874359',
-      usaria:         'entry.1264966813',
-      oferece:        'entry.994010273',
-      comentario:     'entry.91707298'
-    }
-  }
-};
+// ── URL do Proxy (Apps Script) ────────────────────────────────
+// Após implantar o Proxy.gs, cole a URL aqui:
+const PROXY_URL = 'https://script.google.com/macros/s/AKfycbwKQdeTXRMsXNetRxDy_uGp3BmraeY8QHN85j2oioE3G1DxORIRz360ffXRt9PXTGWE/exec';
 
 // ═══════════════════════════════════════════════════════════════
 //  LÓGICA DE FLUXO
@@ -945,51 +911,26 @@ function coletarRespostas() {
 // ═══════════════════════════════════════════════════════════════
 function enviarResposta() {
   const respostas = coletarRespostas();
-  const cfg = FORMS[profile];
 
-  // ── Método iframe oculto: mais confiável para enviar ao Google Forms ──
-  // Remove iframe anterior se existir
-  const old = document.getElementById('_gf_iframe');
-  if (old) old.remove();
+  // Desabilita o botão para evitar duplo envio
+  document.querySelectorAll('.btn-primary').forEach(b => b.disabled = true);
 
-  // Cria iframe invisível para receber o redirect do Forms
-  const iframe = document.createElement('iframe');
-  iframe.id = '_gf_iframe';
-  iframe.name = '_gf_iframe';
-  iframe.style.cssText = 'display:none;width:0;height:0;border:0;position:absolute;left:-9999px';
-  document.body.appendChild(iframe);
-
-  // Cria formulário HTML apontando para o Google Forms
-  const formEl = document.createElement('form');
-  formEl.method = 'POST';
-  formEl.action = cfg.action;
-  formEl.target = '_gf_iframe'; // submete dentro do iframe → sem redirecionar a página
-  formEl.style.display = 'none';
-
-  // Adiciona cada campo como input hidden
-  Object.entries(cfg.fields).forEach(([campo, entry]) => {
-    const val = respostas[campo];
-    if (!val) return;
-    // Respostas de múltipla escolha: cada opção vira um input separado com o mesmo name
-    val.split(', ').forEach(v => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = entry;
-      input.value = v.trim();
-      formEl.appendChild(input);
-    });
+  // Envia ao Apps Script proxy (sem bloqueio CORS)
+  fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ profile: profile, respostas: respostas })
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (!data.ok) console.warn('Proxy retornou erro:', data.msg);
+  })
+  .catch(err => console.warn('Erro ao enviar:', err))
+  .finally(() => {
+    document.querySelectorAll('.btn-primary').forEach(b => b.disabled = false);
   });
 
-  document.body.appendChild(formEl);
-  formEl.submit();
-
-  // Limpa o DOM após envio
-  setTimeout(() => {
-    formEl.remove();
-    iframe.remove();
-  }, 5000);
-
-  // Mostra tela de obrigado imediatamente
+  // Mostra tela de obrigado imediatamente (não espera resposta do servidor)
   document.getElementById('shareMsg').textContent = SHARE_MSGS[profile] || '';
   showScreen('s-thanks', 'forward');
 }
