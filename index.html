@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pesquisa SST Marketplace · Saúde e Segurança do Trabalho</title>
 
-  
 <!--
 =======================================================================
   ENQUETE SST MARKETPLACE — Arquivo HTML hospedável
@@ -946,23 +945,51 @@ function coletarRespostas() {
 // ═══════════════════════════════════════════════════════════════
 function enviarResposta() {
   const respostas = coletarRespostas();
-  const form = FORMS[profile];
+  const cfg = FORMS[profile];
 
-  // Monta o FormData
-  const fd = new FormData();
-  Object.entries(form.fields).forEach(([campo, entry]) => {
+  // ── Método iframe oculto: mais confiável para enviar ao Google Forms ──
+  // Remove iframe anterior se existir
+  const old = document.getElementById('_gf_iframe');
+  if (old) old.remove();
+
+  // Cria iframe invisível para receber o redirect do Forms
+  const iframe = document.createElement('iframe');
+  iframe.id = '_gf_iframe';
+  iframe.name = '_gf_iframe';
+  iframe.style.cssText = 'display:none;width:0;height:0;border:0;position:absolute;left:-9999px';
+  document.body.appendChild(iframe);
+
+  // Cria formulário HTML apontando para o Google Forms
+  const formEl = document.createElement('form');
+  formEl.method = 'POST';
+  formEl.action = cfg.action;
+  formEl.target = '_gf_iframe'; // submete dentro do iframe → sem redirecionar a página
+  formEl.style.display = 'none';
+
+  // Adiciona cada campo como input hidden
+  Object.entries(cfg.fields).forEach(([campo, entry]) => {
     const val = respostas[campo];
-    if (val) {
-      // Checkbox múltiplos: o Forms aceita múltiplos campos com mesmo nome
-      val.split(', ').forEach(v => fd.append(entry, v));
-    }
+    if (!val) return;
+    // Respostas de múltipla escolha: cada opção vira um input separado com o mesmo name
+    val.split(', ').forEach(v => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = entry;
+      input.value = v.trim();
+      formEl.appendChild(input);
+    });
   });
 
-  // Envia via fetch com mode no-cors (Forms não retorna CORS, mas registra)
-  fetch(form.action, { method: 'POST', body: fd, mode: 'no-cors' })
-    .catch(() => {}); // silencia erros CORS — o envio funciona mesmo assim
+  document.body.appendChild(formEl);
+  formEl.submit();
 
-  // Mostra tela de obrigado
+  // Limpa o DOM após envio
+  setTimeout(() => {
+    formEl.remove();
+    iframe.remove();
+  }, 5000);
+
+  // Mostra tela de obrigado imediatamente
   document.getElementById('shareMsg').textContent = SHARE_MSGS[profile] || '';
   showScreen('s-thanks', 'forward');
 }
